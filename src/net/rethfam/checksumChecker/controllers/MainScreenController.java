@@ -12,61 +12,59 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import rethfam.ultis.alertWindows;
+import rethfam.ultis.fileUtils;
 
-import java.io.*;
-import java.security.DigestInputStream;
-import java.security.MessageDigest;
+import java.io.File;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 
 public class MainScreenController {
 
+    private final ObservableList<String> typeList = FXCollections.observableArrayList("MD5", "SHA-1", "SHA-256", "SHA-512");
     @FXML
     private TextField txtFile, txtIntCheckSum, txtFileCheckSum;
-
     @FXML
     private Label lblFile, lblResult, lblIntCheckSum, lblFileCheckSum;
-
     @FXML
     private Button btnFile, btnValidate, btnClose, btnReset;
-
     @FXML
-    private ChoiceBox<String> cbCSype;
-
+    private ChoiceBox<String> cbType;
     private Stage currentStage;
-    private final ObservableList<String> typeList = FXCollections.observableArrayList("MD5", "SHA-1", "SHA-256", "SHA-512");
     private String selectedItem;
-    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
 
     /**
      * Reset the application
+     *
      * @param event calling event
      */
     @FXML
-    private void handleReset(ActionEvent event){
+    private void handleReset(ActionEvent event) {
         txtFile.setText("");
         txtFileCheckSum.setText("");
         txtIntCheckSum.setText("");
         lblResult.setVisible(false);
-        cbCSype.setValue("");
-        cbCSype.getSelectionModel().selectFirst();
+        cbType.setValue("");
+        cbType.getSelectionModel().selectFirst();
     }
 
     /**
      * Close the application
      */
     @FXML
-    private void handleClose(ActionEvent event){
+    private void handleClose(ActionEvent event) {
         System.exit(0);
     }
 
     /**
      * Open the FileChooser and allow the user to select the desired file
+     *
      * @param event calling event
      */
     @FXML
-    private void handleFileChooser(ActionEvent event){
+    private void handleFileChooser(ActionEvent event) {
 
         //Create new FileChooser object
         FileChooser fileChooser = new FileChooser();
@@ -76,7 +74,7 @@ public class MainScreenController {
         File file = fileChooser.showOpenDialog(currentStage);
 
         //Check if file was selected
-        if(file != null){
+        if (file != null) {
             //Set the File Text field to the file path
             txtFile.setText(file.toString());
         }
@@ -84,21 +82,26 @@ public class MainScreenController {
 
     /**
      * Generate the checksum and validate against provided checksum
+     *
      * @param event calling event
      */
     @FXML
-    private void handleValidate(ActionEvent event){
-        if(!(txtFile.getText().trim().isEmpty() && txtFile.getText().trim().equals(""))) {
+    private void handleValidate(ActionEvent event) {
+        if (!(txtFile.getText().trim().isEmpty() && txtFile.getText().trim().equals(""))) {
             String checkSum = null;
             try {
-                checkSum = fileDigest(txtFile.getText(), selectedItem);
-            } catch (Exception e) {
-                e.printStackTrace();
+                checkSum = fileUtils.fileDigest(txtFile.getText(), selectedItem);
+            } catch (NoSuchAlgorithmException e) {
+                new alertWindows().showError(e, "Algorithm Error");
+            } catch (NullPointerException ex) {
+                new alertWindows().showError("File Not Found", "The selected file is invalid. Please correct and try again");
+            } catch (IOException e) {
+                new alertWindows().showError(e, "IOException Error");
             }
             txtFileCheckSum.setText(checkSum);
 
-            if (!(txtIntCheckSum.getText().trim().isEmpty() && txtIntCheckSum.getText().trim().equals(""))) {
 
+            if (!(txtIntCheckSum.getText().trim().isEmpty() && txtIntCheckSum.getText().trim().equals(""))) {
 
                 String validSum = txtIntCheckSum.getText().trim().toUpperCase();
 
@@ -116,78 +119,32 @@ public class MainScreenController {
 
                 lblResult.setVisible(true);
             }
-        } else {
-            return;
         }
     }
 
     /**
      * Prepares the form and set the Checkbox for the Checksum Type
+     *
      * @param currentStage stage object created to display the this form in
      */
-    public void initForm(Stage currentStage){
+    public void initForm(Stage currentStage) {
         this.currentStage = currentStage;
 
         //Add available items to the choice box
-        cbCSype.setItems(typeList);
+        cbType.setItems(typeList);
 
         //Set the ChoiceBox to the first item and set that item as the selected item
-        cbCSype.getSelectionModel().selectFirst();
-        selectedItem = cbCSype.getSelectionModel().getSelectedItem();
+        cbType.getSelectionModel().selectFirst();
+        selectedItem = cbType.getSelectionModel().getSelectedItem();
 
         //Add listener to see when user selects a new choice
-        cbCSype.getSelectionModel().selectedIndexProperty()
+        cbType.getSelectionModel().selectedIndexProperty()
                 .addListener(new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                         //Set the selected item to the item user choose
-                        selectedItem = cbCSype.getItems().get((Integer) newValue);
+                        selectedItem = cbType.getItems().get((Integer) newValue);
                     }
                 });
-    }
-
-    /**
-     * Generate a hashed checksum from a passed file and return the hex has back to the calling method
-     * @param file File to have checksum generated from
-     * @param digestType type of checksum to be generated
-     * @return the hashed checksum of the file
-     */
-    public final String fileDigest(String file, String digestType){
-
-        try {
-            byte[] buffer = new byte[8192];
-            MessageDigest md = MessageDigest.getInstance(digestType);
-
-            DigestInputStream dis = null;
-            try {
-                dis = new DigestInputStream(new FileInputStream(new File(file)), md);
-
-                while (dis.read(buffer) != -1) ;
-            } finally {
-                dis.close();
-            }
-
-            byte[] bytes = md.digest();
-
-            // bytesToHex-method
-            //Update the bytes to a Hex
-            char[] hexChars = new char[bytes.length * 2];
-            for (int j = 0; j < bytes.length; j++) {
-                int v = bytes[j] & 0xFF;
-                hexChars[j * 2] = hexArray[v >>> 4];
-                hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-            }
-
-            return new String(hexChars);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }

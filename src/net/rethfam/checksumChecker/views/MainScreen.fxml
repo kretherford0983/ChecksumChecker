@@ -7,52 +7,61 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.rethfam.checksumChecker.controllers.MainScreenController">
-   <children>
-      <Label layoutX="33.0" layoutY="28.0" text="Check Sum Generator \ Checker">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtFile" layoutX="41.0" layoutY="153.0" prefHeight="25.0" prefWidth="415.0" />
-      <TextField fx:id="txtIntCheckSum" layoutX="41.0" layoutY="257.0" prefHeight="25.0" prefWidth="543.0" promptText="Optional" />
-      <Label fx:id="lblFile" layoutX="41.0" layoutY="106.0" text="Select File">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblIntCheckSum" layoutX="41.0" layoutY="203.0" text="Integrity Checksum">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblFileCheckSum" layoutX="40.0" layoutY="303.0" text="File Checksum">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtFileCheckSum" editable="false" focusTraversable="false" layoutX="41.0" layoutY="353.0" prefHeight="25.0" prefWidth="543.0" />
-      <Label fx:id="lblResult" alignment="CENTER" layoutX="468.0" layoutY="286.0" prefHeight="70.0" prefWidth="160.0" text="Result" textAlignment="CENTER" textFill="RED" visible="false">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnFile" layoutX="478.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleFileChooser" prefHeight="25.0" prefWidth="106.0" text="Select File" />
-      <Button fx:id="btnValidate" layoutX="456.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleValidate" text="Validate">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnClose" cancelButton="true" layoutX="549.0" layoutY="401.0" maxHeight="30.0" maxWidth="71.0" minHeight="30.0" minWidth="71.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="30.0" prefWidth="71.0" text="Close">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnReset" layoutX="41.0" layoutY="401.0" maxHeight="30.0" maxWidth="71.0" minHeight="30.0" minWidth="71.0" mnemonicParsing="false" onAction="#handleReset" prefHeight="30.0" prefWidth="71.0" text="Reset">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <ChoiceBox fx:id="cbCSype" layoutX="478.0" layoutY="208.0" prefHeight="25.0" prefWidth="106.0" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0"
+            prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="net.rethfam.checksumChecker.controllers.MainScreenController">
+    <Label layoutX="33.0" layoutY="28.0" text="Check Sum Generator \ Checker">
+        <font>
+          <Font size="36.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="txtFile" layoutX="41.0" layoutY="153.0" prefHeight="25.0" prefWidth="415.0"/>
+    <TextField fx:id="txtIntCheckSum" layoutX="41.0" layoutY="257.0" prefHeight="25.0" prefWidth="543.0"
+               promptText="Optional"/>
+    <Label fx:id="lblFile" layoutX="41.0" layoutY="106.0" text="Select File">
+        <font>
+          <Font size="24.0"/>
+        </font>
+    </Label>
+    <Label fx:id="lblIntCheckSum" layoutX="41.0" layoutY="203.0" text="Integrity Checksum">
+        <font>
+          <Font size="24.0"/>
+        </font>
+    </Label>
+    <Label fx:id="lblFileCheckSum" layoutX="40.0" layoutY="303.0" text="File Checksum">
+        <font>
+          <Font size="24.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="txtFileCheckSum" editable="false" focusTraversable="false" layoutX="41.0" layoutY="353.0"
+               prefHeight="25.0" prefWidth="543.0"/>
+    <Label fx:id="lblResult" alignment="CENTER" layoutX="468.0" layoutY="286.0" prefHeight="70.0" prefWidth="160.0"
+           text="Result" textAlignment="CENTER" textFill="RED" visible="false">
+        <font>
+          <Font size="36.0"/>
+        </font>
+    </Label>
+    <Button fx:id="btnFile" layoutX="478.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleFileChooser"
+            prefHeight="25.0" prefWidth="106.0" text="Select File"/>
+    <Button fx:id="btnValidate" layoutX="456.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleValidate"
+            text="Validate">
+        <font>
+          <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button fx:id="btnClose" cancelButton="true" layoutX="549.0" layoutY="401.0" maxHeight="30.0" maxWidth="71.0"
+            minHeight="30.0" minWidth="71.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="30.0"
+            prefWidth="71.0" text="Close">
+        <font>
+          <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button fx:id="btnReset" layoutX="41.0" layoutY="401.0" maxHeight="30.0" maxWidth="71.0" minHeight="30.0"
+            minWidth="71.0" mnemonicParsing="false" onAction="#handleReset" prefHeight="30.0" prefWidth="71.0"
+            text="Reset">
+        <font>
+          <Font size="14.0"/>
+        </font>
+    </Button>
+    <ChoiceBox fx:id="cbType" layoutX="478.0" layoutY="208.0" prefHeight="25.0" prefWidth="106.0"/>
 </AnchorPane>
