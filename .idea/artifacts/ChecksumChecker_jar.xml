@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ChecksumChecker_jar</output-path>
     <root id="archive" name="ChecksumChecker.jar">
       <element id="module-output" name="ChecksumChecker" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../Utilities/out/artifacts/Utilities_jar/Utilities.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

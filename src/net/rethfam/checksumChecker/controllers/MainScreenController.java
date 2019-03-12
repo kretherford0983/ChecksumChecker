@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import rethfam.ultis.alertWindows;
@@ -24,7 +21,9 @@ public class MainScreenController {
 
     private final ObservableList<String> typeList = FXCollections.observableArrayList("MD5", "SHA-1", "SHA-256", "SHA-512");
     @FXML
-    private TextField txtFile, txtIntCheckSum, txtFileCheckSum;
+    private TextField txtFile;
+    @FXML
+    private TextArea txtFileCheckSum, txtIntCheckSum;
     @FXML
     private Label lblFile, lblResult, lblIntCheckSum, lblFileCheckSum;
     @FXML
