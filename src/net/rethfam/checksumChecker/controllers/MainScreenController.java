@@ -104,8 +104,8 @@ public class MainScreenController {
 
                 String validSum = txtIntCheckSum.getText().trim().toUpperCase();
 
-                System.out.println(validSum);
-                System.out.println(checkSum);
+                //System.out.println(validSum);
+                //System.out.println(checkSum);
 
                 //Set the Result and Result color if matches green else red
                 if (checkSum.equals(validSum)) {
