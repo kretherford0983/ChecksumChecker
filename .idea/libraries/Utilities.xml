@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Utilities">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Utilities/out/artifacts/Utilities_jar/Utilities.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/net/rethfam/checksumChecker/lib/Utilities.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
