@@ -1,9 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="ChecksumChecker:jar">
+  <artifact type="jar" build-on-make="true" name="ChecksumChecker:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/ChecksumChecker_jar</output-path>
     <root id="archive" name="ChecksumChecker.jar">
-      <element id="module-output" name="ChecksumChecker" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../Utilities/out/artifacts/Utilities_jar/Utilities.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Utilities/out/artifacts/Utilities_jar/Utilities.jar" />
+      <element id="module-output" name="ChecksumChecker" />
     </root>
   </artifact>
 </component>
