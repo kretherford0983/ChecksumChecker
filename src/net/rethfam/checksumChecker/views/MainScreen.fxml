@@ -15,7 +15,7 @@
          </font>
       </Label>
       <TextField fx:id="txtFile" layoutX="41.0" layoutY="153.0" prefHeight="25.0" prefWidth="415.0" />
-      <TextField fx:id="txtIntCheckSum" layoutX="41.0" layoutY="257.0" prefHeight="25.0" prefWidth="543.0" />
+      <TextField fx:id="txtIntCheckSum" layoutX="41.0" layoutY="257.0" prefHeight="25.0" prefWidth="543.0" promptText="Optional" />
       <Label fx:id="lblFile" layoutX="41.0" layoutY="106.0" text="Select File">
          <font>
             <Font size="24.0" />
