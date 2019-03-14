@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import rethfam.ultis.alertWindows;
 import rethfam.ultis.fileUtils;
@@ -65,12 +64,8 @@ public class MainScreenController {
     @FXML
     private void handleFileChooser(ActionEvent event) {
 
-        //Create new FileChooser object
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select File");
-
         //Show the FileChooser on the current stage and set a File object as the selected file
-        File file = fileChooser.showOpenDialog(currentStage);
+        File file = fileUtils.fileChooser(currentStage);
 
         //Check if file was selected
         if (file != null) {

@@ -52,6 +52,6 @@
         </font>
     </Button>
     <ChoiceBox fx:id="cbType" layoutX="478.0" layoutY="203.0" prefHeight="25.0" prefWidth="106.0" />
-   <TextArea fx:id="txtFileCheckSum" layoutX="41.0" layoutY="368.0" prefHeight="53.0" prefWidth="543.0" wrapText="true" />
+   <TextArea fx:id="txtFileCheckSum" editable="false" layoutX="41.0" layoutY="368.0" prefHeight="53.0" prefWidth="543.0" wrapText="true" />
    <TextArea fx:id="txtIntCheckSum" layoutX="41.0" layoutY="245.0" prefHeight="53.0" prefWidth="543.0" promptText="Optional" wrapText="true" />
 </AnchorPane>
