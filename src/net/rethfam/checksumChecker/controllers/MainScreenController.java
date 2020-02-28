@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import rethfam.ultis.alertWindows;
+import rethfam.ultis.AlertWindows;
 import rethfam.ultis.fileUtils;
 
 import java.io.File;
@@ -45,7 +45,7 @@ public class MainScreenController {
         txtIntCheckSum.setText("");
         lblResult.setVisible(false);
         cbType.setValue("");
-        cbType.getSelectionModel().selectFirst();
+        cbType.getSelectionModel().select(2);
     }
 
     /**
@@ -65,7 +65,7 @@ public class MainScreenController {
     private void handleFileChooser(ActionEvent event) {
 
         //Show the FileChooser on the current stage and set a File object as the selected file
-        File file = fileUtils.fileChooser(currentStage);
+        File file = fileUtils.singleFileChooser(currentStage);
 
         //Check if file was selected
         if (file != null) {
@@ -86,26 +86,29 @@ public class MainScreenController {
             try {
                 checkSum = fileUtils.fileDigest(txtFile.getText(), selectedItem);
             } catch (NoSuchAlgorithmException e) {
-                new alertWindows().showError(e, "Algorithm Error");
+                new AlertWindows().showError(e, "Algorithm Error");
             } catch (NullPointerException ex) {
-                new alertWindows().showError("File Not Found", "The selected file is invalid. Please correct and try again");
+                new AlertWindows().showError("File Not Found", "The selected file is invalid. Please correct and try again");
             } catch (IOException e) {
-                new alertWindows().showError(e, "IOException Error");
+                new AlertWindows().showError(e, "IOException Error");
             }
             txtFileCheckSum.setText(checkSum);
+            txtIntCheckSum.setText(txtIntCheckSum.getText().toUpperCase());
 
 
             if (!(txtIntCheckSum.getText().trim().isEmpty() && txtIntCheckSum.getText().trim().equals(""))) {
 
                 String validSum = txtIntCheckSum.getText().trim().toUpperCase();
 
-                //System.out.println(validSum);
-                //System.out.println(checkSum);
-
                 //Set the Result and Result color if matches green else red
-                if (checkSum.equals(validSum)) {
-                    lblResult.setText("MATCH");
-                    lblResult.setStyle("-fx-text-fill: green");
+                if (checkSum != null) {
+                    if (checkSum.equals(validSum)) {
+                        lblResult.setText("MATCH");
+                        lblResult.setStyle("-fx-text-fill: green");
+                    } else {
+                        lblResult.setText("ERROR");
+                        lblResult.setStyle("-fx-text-fill: red");
+                    }
                 } else {
                     lblResult.setText("ERROR");
                     lblResult.setStyle("-fx-text-fill: red");
@@ -128,7 +131,7 @@ public class MainScreenController {
         cbType.setItems(typeList);
 
         //Set the ChoiceBox to the first item and set that item as the selected item
-        cbType.getSelectionModel().selectFirst();
+        cbType.getSelectionModel().select(2);
         selectedItem = cbType.getSelectionModel().getSelectedItem();
 
         //Add listener to see when user selects a new choice
