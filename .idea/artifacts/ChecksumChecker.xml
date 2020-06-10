@@ -1,0 +1,28 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="ChecksumChecker">
+    <output-path>$PROJECT_DIR$/out/artifacts/ChecksumChecker</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="net.rethfam.checksumChecker.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="linuxIcon" value="$PROJECT_DIR$/src/net/rethfam/checksumChecker/images/checkImage-16x16.png" />
+            <option name="macIcon" value="$PROJECT_DIR$/src/net/rethfam/checksumChecker/images/CheckSumIcon.icns" />
+            <option name="windowsIcon" value="$PROJECT_DIR$/src/net/rethfam/checksumChecker/images/CheckSumIcon.ico" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="title" value="Checksum Checker" />
+        <option name="vendor" value="" />
+        <option name="version" value="1.0" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="ChecksumChecker.jar">
+        <element id="module-output" name="ChecksumChecker" />
+      </element>
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/net/rethfam/checksumChecker/lib/Utilities.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
